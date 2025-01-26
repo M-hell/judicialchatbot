@@ -7,6 +7,7 @@ const returnGeminiResponse = async (prompt) => {
     try {
         const result = await model.generateContent(prompt);
         const responseText = await result.response.text();
+
         return responseText;
     } catch (error) {
         return error;
