@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const caseSchema = new mongoose.Schema(
   {
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     name: {
       type: String,
       required: [true, "provide name"],
@@ -27,9 +31,6 @@ const caseSchema = new mongoose.Schema(
       type: String,
     },
     enddate: {
-      type: String,
-    },
-    summary: {
       type: String,
     },
   },
