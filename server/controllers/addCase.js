@@ -1,5 +1,6 @@
 const UserModel = require("../models/UserModel");
 const CaseModel = require("../models/CaseModel");
+const getUserDetailsFromToken = require("../helpers/getUserDetailsFromToken");
 const returnGeminiResponse = require("./gemini/returnGeminiResponse");
 
 const addCase = async (request, response) => {
@@ -69,4 +70,4 @@ const addCase = async (request, response) => {
     }
 };
 
-module.exports = { addCase };
+module.exports =  addCase ;
