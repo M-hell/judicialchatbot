@@ -19,7 +19,7 @@ const ocr = async (req, res) => {
         }
         const prompt = `I am facing a legal issue and the summary of the issue is this - ${caseData.summary}.
         I am having a issue with the document regarding this legal case. Can you help me understand the legal implications of this document?
-        the text is the document is - ${text}`;
+        the text in the document is - ${text}`;
 
 
         const response=await returnGeminiResponse(prompt);
