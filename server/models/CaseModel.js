@@ -36,6 +36,11 @@ const caseSchema = new mongoose.Schema(
     summary: {
       type: String,
     },
+    imagedocuments: [
+      {
+        type: String,
+      },
+    ],
   },
   {
     timestamps: true, // Correct way to enable timestamps
