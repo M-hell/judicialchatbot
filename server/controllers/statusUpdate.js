@@ -4,7 +4,12 @@ async function statusUpdate(request,response){
     try{
         const {caseid} = request.body
         const caseDetails=await CaseModel.findById(caseid);
-        caseDetails.status="Completed";
+        if(caseDetails.status==="Pending"){
+            caseDetails.status="Closed";
+        }
+        else{
+            caseDetails.status="Pending";
+        }
         caseDetails.enddate=new Date().toISOString();
         await caseDetails.save();
         return response.status(200).json({caseDetails,success:true});
