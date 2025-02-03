@@ -8,6 +8,7 @@ const userDetails = require("../controllers/userDetails.js");
 const addCase = require("../controllers/addCase.js");
 const addHearing = require("../controllers/addHearing.js");
 const statusUpdate = require("../controllers/statusUpdate.js");
+const chatWithAI = require("../controllers/chatWithAI.js");
 
 //user registering
 router.post("/register", registerUser);
@@ -29,5 +30,6 @@ router.post("/add-hearing", addHearing);
 
 //update status
 router.post("/status-update", statusUpdate);
+
 
 module.exports = router;
