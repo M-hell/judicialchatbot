@@ -44,6 +44,7 @@ const addCase = async (request, response) => {
             initialResponse,
             status: "Pending", // Default status
             startdate: new Date().toISOString(), // Default start date
+            summary: initialResponse, // Default summary
         };
 
         // Save the case to the database
