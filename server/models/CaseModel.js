@@ -1,43 +1,46 @@
 const mongoose = require("mongoose");
 
-const caseSchema = new mongoose.Schema({
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  name: {
-    type: String,
-    required: [true, "provide name"],
-  },
-  description: {
-    type: String,
-    required: [true, "provide description"],
-  },
-  initialResponse: {
-    type: String,
-  },
-  hearings: [
-    {
+const caseSchema = new mongoose.Schema(
+  {
+    author: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Hearing",
+      ref: "User",
     },
-  ],
-  status: {
-    type: String,
-    required: [true, "provide status"],
+    name: {
+      type: String,
+      required: [true, "provide name"],
+    },
+    description: {
+      type: String,
+      required: [true, "provide description"],
+    },
+    initialResponse: {
+      type: String,
+    },
+    hearings: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Hearing",
+      },
+    ],
+    status: {
+      type: String,
+      required: [true, "provide status"],
+    },
+    startdate: {
+      type: String,
+    },
+    enddate: {
+      type: String,
+    },
+    summary: {
+      type: String,
+    },
   },
-  startdate: {
-    type: String,
-  },
-  enddate: {
-    type: String,
-  },
-  summary: {
-    type: String,
-  },
-
-  timestamps: true,
-});
+  {
+    timestamps: true, // Correct way to enable timestamps
+  }
+);
 
 const CaseModel = mongoose.model("Case", caseSchema);
 
