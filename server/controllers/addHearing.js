@@ -1,10 +1,11 @@
 const HearingModel = require("../models/HearingModel");
-const returnGeminiResponse = require("../utils/geminiHelper");
+const returnGeminiResponse = require("./gemini/returnGeminiResponse");
 const CaseModel = require("../models/CaseModel");
 
 async function addHearing(request, response) {
   try {
     const {
+      caseid,
       no,
       date,
       userStatementSummary,
@@ -38,7 +39,8 @@ async function addHearing(request, response) {
     await newHearing.save();
 
     // Fetch the case summary
-    const caseSummary = await CaseModel.findById(request.params.id);
+    const caseSummary = await CaseModel.findById(caseid);
+
     if (!caseSummary) {
       return response.status(404).json({ error: "Case not found." });
     }
@@ -85,11 +87,9 @@ async function addHearing(request, response) {
         "Error generating Gemini response for case summary:",
         error
       );
-      return response
-        .status(500)
-        .json({
-          error: "Failed to generate updated case summary from Gemini.",
-        });
+      return response.status(500).json({
+        error: "Failed to generate updated case summary from Gemini.",
+      });
     }
 
     // Update the case with the new summary
@@ -111,6 +111,4 @@ async function addHearing(request, response) {
   }
 }
 
-module.exports = {
-  addHearing,
-};
+module.exports = addHearing;
