@@ -7,6 +7,7 @@ const checkPassword = require("../controllers/checkPassword.js");
 const userDetails = require("../controllers/userDetails.js");
 const addCase = require("../controllers/addCase.js");
 const addHearing = require("../controllers/addHearing.js");
+const statusUpdate = require("../controllers/statusUpdate.js");
 
 //user registering
 router.post("/register", registerUser);
@@ -23,6 +24,10 @@ router.get("/user-details", userDetails);
 //add case
 router.post("/add-case", addCase);
 
+//add hearing
 router.post("/add-hearing", addHearing);
+
+//update status
+router.post("/status-update", statusUpdate);
 
 module.exports = router;
