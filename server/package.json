@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
+    "@huggingface/inference": "^3.1.5",
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
@@ -22,6 +23,7 @@
     "gemini-api": "^2.0.4",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "tesseract.js": "^6.0.0"
   }
 }

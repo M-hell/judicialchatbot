@@ -7,6 +7,9 @@ const checkPassword = require("../controllers/checkPassword.js");
 const userDetails = require("../controllers/userDetails.js");
 const addCase = require("../controllers/addCase.js");
 const addHearing = require("../controllers/addHearing.js");
+const statusUpdate = require("../controllers/statusUpdate.js");
+const ocr = require("../controllers/ocr.js");
+const getCaseDetails = require("../controllers/getCaseDetails.js");
 
 //user registering
 router.post("/register", registerUser);
@@ -18,11 +21,22 @@ router.post("/email", checkEmail);
 router.post("/password", checkPassword);
 
 //give user details
-router.get("/user-details", userDetails);
+router.post("/user-details", userDetails);
 
 //add case
 router.post("/add-case", addCase);
 
+//add hearing
 router.post("/add-hearing", addHearing);
+
+//update status
+router.post("/status-update", statusUpdate);
+
+//ocr
+router.post("/ocr", ocr);
+
+//get case details
+router.post("/get-case-details", getCaseDetails);
+
 
 module.exports = router;
