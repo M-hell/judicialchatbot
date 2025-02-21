@@ -115,7 +115,7 @@ const Home = () => {
           <div>
             {cases.length > 0 ? (
               cases.map((caseItem, index) => (
-                <div key={index} className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md mb-3 transition-all hover:bg-gray-600">
+                <div onClick={() => navigate(`/case/${caseItem._id}`)} key={index} className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md mb-3 transition-all hover:bg-gray-600">
                   <div>
                     <h3 className="text-lg font-semibold">{caseItem.name}</h3>
                     <p className="text-gray-300">Status: {caseItem.status}</p>

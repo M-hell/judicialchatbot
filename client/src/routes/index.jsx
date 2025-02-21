@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import CheckPassword from "../pages/CheckPassword";
 import AddCase from "../components/AddCase";
+import CaseDetails from "../components/CaseDetails";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "add-case",
                 element: <AddCase />
+            },
+            {
+                path: "case/:id",
+                element: <CaseDetails />
             }
         ]
     }
