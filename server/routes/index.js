@@ -10,6 +10,7 @@ const addHearing = require("../controllers/addHearing.js");
 const statusUpdate = require("../controllers/statusUpdate.js");
 const ocr = require("../controllers/ocr.js");
 const getCaseDetails = require("../controllers/getCaseDetails.js");
+const addImage = require("../controllers/addImage.js");
 
 //user registering
 router.post("/register", registerUser);
@@ -37,6 +38,9 @@ router.post("/ocr", ocr);
 
 //get case details
 router.post("/get-case-details", getCaseDetails);
+
+//add image
+router.post("/add-image", addImage);
 
 
 module.exports = router;
