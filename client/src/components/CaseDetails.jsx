@@ -9,8 +9,10 @@ import {
   FaUpload,
   FaRobot,
   FaFolderOpen,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const CaseDetails = () => {
   const { id } = useParams();
@@ -22,7 +24,7 @@ const CaseDetails = () => {
   const [loading, setLoading] = useState(false);
   const [typingIndex, setTypingIndex] = useState(0);
   const [addImageStatus, setAddImageStatus] = useState("Add Image");
-  const [showCaseFiles, setShowCaseFiles] = useState(false); // New state for showing case files
+  const [showCaseFiles, setShowCaseFiles] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,6 +94,31 @@ const CaseDetails = () => {
       console.error("Error processing OCR:", error);
     }
     setLoading(false);
+  };
+
+  const updateCaseStatus = async () => {
+    try {
+      const URL = `${
+        import.meta.env.VITE_REACT_APP_BACKEND_URL
+      }/api/status-update`;
+      const response = await axios.post(
+        URL,
+        { caseid: id },
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        // Update the local state to reflect the new status
+        setCaseDetails((prevDetails) => ({
+          ...prevDetails,
+          status: response.data.caseDetails.status,
+          enddate: response.data.caseDetails.enddate,
+        }));
+        toast.success("Case status updated successfully!");
+      }
+    } catch (error) {
+      console.error("Error updating case status:", error);
+      toast.error("Failed to update case status.");
+    }
   };
 
   useEffect(() => {
@@ -171,7 +198,11 @@ const CaseDetails = () => {
           >
             <FaFolderOpen /> Show Case Files
           </button>
-          <div className="px-4 py-2 rounded-full text-white text-lg bg-yellow-500">
+          <div
+            className={`px-4 py-2 rounded-full text-white text-lg ${
+              caseDetails.status === "Closed" ? "bg-green-500" : "bg-yellow-500"
+            }`}
+          >
             {caseDetails.status}
           </div>
         </div>
@@ -243,6 +274,13 @@ const CaseDetails = () => {
             </div>
           )}
         </div>
+        <button
+          onClick={updateCaseStatus}
+          className="mt-8 w-full px-6 py-3 bg-purple-600 hover:bg-purple-500 rounded-lg text-white flex items-center justify-center gap-3"
+        >
+          <FaCheckCircle /> Update Status to{" "}
+          {caseDetails.status === "Pending" ? "Closed" : "Pending"}
+        </button>
         <button
           onClick={() => navigate("/")}
           className="mt-8 w-full px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white flex items-center justify-center gap-3"
