@@ -19,7 +19,7 @@ const Home = () => {
     
         console.log("User details response:", response.data);
     
-        if (!response.data || !response.data.data) {
+        if (!response.data || !response.data.data || response.data.data.logout) {
           console.error("Invalid response from server", response.data);
           logout();
           navigate("/intro");
