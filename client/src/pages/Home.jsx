@@ -16,18 +16,34 @@ const Home = () => {
       try {
         const URL = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/user-details`;
         const response = await axios.post(URL, {}, { withCredentials: true });
-
+    
+        console.log("User details response:", response.data);
+    
+        if (!response.data || !response.data.data) {
+          console.error("Invalid response from server", response.data);
+          logout();
+          navigate("/intro");
+          return;
+        }
+    
         if (response.data.data.logout) {
-          logout(); // Clear Zustand state
+          logout();
           navigate("/intro");
         } else {
-          setUser(response.data.data); // Store user details in Zustand
-          setCases(response.data.data.cases || []); // Store cases
+          setUser({
+            name: response.data.data.name,
+            email: response.data.data.email,
+            nationality: response.data.data.nationality,
+            sex: response.data.data.sex,
+          });
+    
+          setCases(response.data.data.cases || []);
         }
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
     };
+    
     fetchUserDetails();
   }, [setUser, logout, navigate]);
 
