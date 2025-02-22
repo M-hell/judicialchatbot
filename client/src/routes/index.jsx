@@ -8,6 +8,7 @@ import CheckPassword from "../pages/CheckPassword";
 import AddCase from "../components/AddCase";
 import CaseDetails from "../components/CaseDetails";
 import Add_hearing from "../pages/Add_hearing";
+import New_hearing from "../pages/New_hearing";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "Add_hearing", // Match the casing in the URL
         element: <Add_hearing />,
+      },
+      {
+        path: "new-hearing",
+        element: <New_hearing />,
       },
     ],
   },

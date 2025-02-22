@@ -1,12 +1,14 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const AddHearing = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const caseId = searchParams.get("caseid");
   const [caseDetails, setCaseDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [openHearingId, setOpenHearingId] = useState(null); // Track which hearing is open
 
   useEffect(() => {
     if (!caseId) return;
@@ -39,6 +41,21 @@ const AddHearing = () => {
 
     fetchCaseDetails();
   }, [caseId]);
+
+  // Toggle hearing collapse/expand
+  const toggleHearing = (hearingId) => {
+    setOpenHearingId((prevId) => (prevId === hearingId ? null : hearingId));
+  };
+
+  // Calculate the next hearing number
+  const nextHearingNumber = caseDetails
+    ? caseDetails.data.hearings.length + 1
+    : 1;
+
+  // Navigate to the New_hearing page
+  const handleAddHearing = () => {
+    navigate(`/new-hearing?caseid=${caseId}&no=${nextHearingNumber}`);
+  };
 
   if (loading)
     return (
@@ -84,41 +101,56 @@ const AddHearing = () => {
             {caseDetails.data.hearings.map((hearing, index) => (
               <div
                 key={hearing._id}
-                className="bg-gray-800 p-5 rounded-lg shadow-md border-l-4 border-blue-500 hover:scale-105 transition-transform"
+                className="bg-gray-800 p-5 rounded-lg shadow-md border-l-4 border-blue-500 hover:scale-105 transition-transform cursor-pointer"
+                onClick={() => toggleHearing(hearing._id)} // Toggle hearing on click
               >
                 <h3 className="text-xl font-semibold text-blue-300">
                   📅 Hearing {index + 1} - {hearing.date}
                 </h3>
-                <p>
-                  <span className="font-semibold text-green-400">
-                    👤 User Statement:
-                  </span>{" "}
-                  {hearing.userStatementSummary}
-                </p>
-                <p>
-                  <span className="font-semibold text-red-400">
-                    ⚖️ Opposing Party Statement:
-                  </span>{" "}
-                  {hearing.opposingPartyStatementSummary}
-                </p>
-                <p>
-                  <span className="font-semibold text-blue-400">
-                    🔍 Judge's Statement:
-                  </span>{" "}
-                  {hearing.judgeStatementSummary}
-                </p>
-                <p>
-                  <span className="font-semibold text-yellow-400">
-                    📝 Response:
-                  </span>{" "}
-                  {hearing.response}
-                </p>
+                {openHearingId === hearing._id && ( // Show details if hearing is open
+                  <div className="mt-4 space-y-2">
+                    <p>
+                      <span className="font-semibold text-green-400">
+                        👤 User Statement:
+                      </span>{" "}
+                      {hearing.userStatementSummary}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-red-400">
+                        ⚖️ Opposing Party Statement:
+                      </span>{" "}
+                      {hearing.opposingPartyStatementSummary}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-blue-400">
+                        🔍 Judge's Statement:
+                      </span>{" "}
+                      {hearing.judgeStatementSummary}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-yellow-400">
+                        📝 Response:
+                      </span>{" "}
+                      {hearing.response}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         ) : (
           <p className="text-center text-gray-400">⚠️ No hearings available.</p>
         )}
+
+        {/* Add Hearing Button */}
+        <div className="mt-8 text-center">
+          <button
+            onClick={handleAddHearing}
+            className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors"
+          >
+            ➕ Add Hearing
+          </button>
+        </div>
       </div>
     </div>
   );
