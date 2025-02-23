@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const New_hearing = () => {
   const [searchParams] = useSearchParams();
@@ -33,7 +34,7 @@ const New_hearing = () => {
       );
 
       if (response.status === 201) {
-        alert("Hearing added successfully!");
+        toast.success("Hearing added successfully!");
         navigate(`/Add_hearing?caseid=${formData.caseid}`); // Redirect back to the case details page
       }
     } catch (error) {
