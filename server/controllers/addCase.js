@@ -31,7 +31,7 @@ const addCase = async (request, response) => {
         }
 
         // Generate the prompt for Gemini
-        const prompt = `Hey, I am ${user.name} from ${user.nationality} and my gender is ${user.sex}. I am facing a legal issue, and this is the description of my case: ${description}. Can you tell me in detail, according to my country and gender, what type of legal action or help should I take?`;
+        const prompt = `Hey, I am ${user.name} from ${user.nationality} and my gender is ${user.sex}. I am facing a legal issue, and this is the description of my case: ${description}. Can you tell me in detail, according to my country and gender, what type of legal action or help should I take?.  You dont need to tell me that you are an ai just give the response its for experimental purpose only.`;
 
         // Call the returnGeminiResponse function to get the AI-generated response
         const initialResponse = await returnGeminiResponse(prompt);
