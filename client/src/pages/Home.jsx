@@ -58,7 +58,7 @@ const Home = () => {
     value: caseStatusCount[key],
   }));
 
-  const COLORS = ['#FFD700', '#32CD32', '#FF6347'];
+  const COLORS = ['#32CD32','#FFD700', '#FF6347'];
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white p-6 w-full">
@@ -127,33 +127,38 @@ const Home = () => {
 
         {/* Case List Section */}
         <div className="bg-gray-800 p-6 mt-6 rounded-lg shadow-lg w-full max-w-5xl h-full max-h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
-          <h2 className="text-2xl font-bold mb-4">Your Cases</h2>
+  <h2 className="text-2xl font-bold mb-4">Your Cases</h2>
+  <div>
+    {cases.length > 0 ? (
+      [...cases].reverse().map((caseItem, index) => (
+        <div
+          onClick={() => navigate(`/case/${caseItem._id}`)}
+          key={index}
+          className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md mb-3 transition-all hover:bg-gray-600"
+        >
           <div>
-            {cases.length > 0 ? (
-              cases.map((caseItem, index) => (
-                <div onClick={() => navigate(`/case/${caseItem._id}`)} key={index} className="flex justify-between items-center p-4 bg-gray-700 rounded-lg shadow-md mb-3 transition-all hover:bg-gray-600">
-                  <div>
-                    <h3 className="text-lg font-semibold">{caseItem.name}</h3>
-                    <p className="text-gray-300">Status: {caseItem.status}</p>
-                  </div>
-                  <span
-                    className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
-                      caseItem.status === "Pending"
-                        ? "bg-yellow-500 hover:bg-yellow-400"
-                        : caseItem.status === "Approved"
-                        ? "bg-green-500 hover:bg-green-400"
-                        : "bg-red-500 hover:bg-red-400"
-                    }`}
-                  >
-                    {caseItem.status}
-                  </span>
-                </div>
-              ))
-            ) : (
-              <p className="text-gray-400 text-center">No cases found.</p>
-            )}
+            <h3 className="text-lg font-semibold">{caseItem.name}</h3>
+            <p className="text-gray-300">Status: {caseItem.status}</p>
           </div>
+          <span
+            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              caseItem.status === "Pending"
+                ? "bg-yellow-500 hover:bg-yellow-400"
+                : caseItem.status === "Closed"
+                ? "bg-green-500 hover:bg-green-400"
+                : "bg-red-500 hover:bg-red-400"
+            }`}
+          >
+            {caseItem.status}
+          </span>
         </div>
+      ))
+    ) : (
+      <p className="text-gray-400 text-center">No cases found.</p>
+    )}
+  </div>
+</div>
+
       </div>
     </div>
   );
