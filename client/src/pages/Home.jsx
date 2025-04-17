@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {FaSignOutAlt, FaBalanceScale } from 'react-icons/fa';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { RxAvatar } from "react-icons/rx";
+import { FaRobot, FaExternalLinkAlt } from "react-icons/fa";
 
 const Home = () => {
   const { name, email, nationality, sex, setUser, logout } = useUserStore(); // Zustand state
@@ -85,6 +86,20 @@ const Home = () => {
             </PieChart>
           </div>
         )}
+
+        {/* New Voice Assistant Box */}
+        <div 
+          className="mt-6 p-4 bg-indigo-700 rounded-lg shadow-md hover:bg-indigo-600 transition-all cursor-pointer flex flex-col items-center text-center"
+          onClick={() => window.open('https://gibberlink-psi.vercel.app/', '_blank')}
+        >
+          <FaRobot className="text-4xl mb-3 text-white" />
+          <h3 className="text-xl font-semibold mb-2">Talk to our Voice Assistant</h3>
+          <p className="text-gray-200 mb-2">Get instant voice-based legal guidance</p>
+          <div className="flex items-center text-sm text-indigo-200">
+            <span>Click to open</span>
+            <FaExternalLinkAlt className="ml-2" />
+          </div>
+        </div>
       </div>
 
       {/* Right: Main Content */}
