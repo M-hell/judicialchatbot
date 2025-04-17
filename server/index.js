@@ -1,5 +1,3 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 require('dotenv').config()
 const express=require('express')
 const PORT=process.env.PORT || 3000
@@ -10,6 +8,7 @@ app.use(cors(
     {
         origin: [process.env.FRONTEND_URL],
         methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true
     }
 ))
