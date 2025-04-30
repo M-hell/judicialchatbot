@@ -90,7 +90,7 @@ const AddCase = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        <label className="block text-lg md:text-xl mb-3 flex items-center gap-2">
+                        <label className="text-lg md:text-xl mb-3 flex items-center gap-2">
                             <FiFileText className="text-blue-400" /> Case Name:
                         </label>
                         <input
@@ -108,7 +108,7 @@ const AddCase = () => {
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.4 }}
                     >
-                        <label className="block text-lg md:text-xl mb-3 flex items-center gap-2">
+                        <label className="text-lg md:text-xl mb-3 flex items-center gap-2">
                             <FiMessageSquare className="text-blue-400" /> Description:
                         </label>
                         <textarea
@@ -168,7 +168,7 @@ const AddCase = () => {
                             transition={{ delay: 0.2 }}
                             className="mt-6"
                         >
-                            <label className="block text-lg md:text-xl mb-3 flex items-center gap-2">
+                            <label className="text-lg md:text-xl mb-3 flex items-center gap-2">
                                 <FiMessageSquare className="text-green-400" /> Initial Response:
                             </label>
                             <motion.div

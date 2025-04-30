@@ -128,7 +128,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className=" text-lg font-semibold mb-3 flex items-center gap-2">
               <FiFileText className="text-blue-400" /> Case ID
             </label>
             <input
@@ -148,7 +148,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.55 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className="text-lg font-semibold mb-3 flex items-center gap-2">
               <FiFileText className="text-blue-400" /> Hearing Number
             </label>
             <input
@@ -168,7 +168,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className="text-lg font-semibold mb-3 flex items-center gap-2">
               <FiCalendar className="text-blue-400" /> Hearing Date
             </label>
             <input
@@ -187,7 +187,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.65 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className="text-lg font-semibold mb-3 flex items-center gap-2">
               <FiUser className="text-green-400" /> User Statement Summary
             </label>
             <textarea
@@ -205,7 +205,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className="text-lg font-semibold mb-3 flex items-center gap-2">
               <FaHandshake className="text-red-400" /> Opposing Party Statement
             </label>
             <textarea
@@ -223,7 +223,7 @@ const New_hearing = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.75 }}
           >
-            <label className="block text-lg font-semibold mb-3 flex items-center gap-2">
+            <label className="text-lg font-semibold mb-3 flex items-center gap-2">
               <FiGavel className="text-yellow-400" /> Judge Statement Summary
             </label>
             <textarea
