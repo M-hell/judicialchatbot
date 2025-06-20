@@ -35,7 +35,7 @@ const cleanMarkdown = (text) => {
     .trim();
 };
 
-const returnGeminiResponse = async (prompt) => {
+const returnGeminiResponseTuned = async (prompt) => {
     console.log("tune model endpoint hit");
     console.log("Prompt:", prompt);
   try {
@@ -66,4 +66,4 @@ const returnGeminiResponse = async (prompt) => {
   }
 };
 
-module.exports = returnGeminiResponse;
+module.exports = returnGeminiResponseTuned;
