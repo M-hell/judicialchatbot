@@ -1,5 +1,6 @@
 const { createWorker } = require('tesseract.js');
 const returnGeminiResponse = require('./gemini/returnGeminiResponse');
+// const returnGeminiResponse = require("./gemini/returnGeminiResponseTuned");
 const CaseModel = require('../models/CaseModel');
 
 const ocr = async (req, res) => {
