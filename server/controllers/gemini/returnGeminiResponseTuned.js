@@ -40,7 +40,7 @@ const returnGeminiResponseTuned = async (prompt) => {
     console.log("Prompt:", prompt);
   try {
     const req_data = {
-      model,
+      model: model,
       contents: [
         {
           role: 'user',
@@ -51,7 +51,6 @@ const returnGeminiResponseTuned = async (prompt) => {
     };
 
     const streamingResp = await ai.models.generateContentStream(req_data);
-    console.log("Streaming Response:", streamingResp);
 
     let fullResponse = '';
     for await (const chunk of streamingResp) {
